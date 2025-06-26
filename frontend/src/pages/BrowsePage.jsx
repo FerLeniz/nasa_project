@@ -2,28 +2,40 @@ import { useState } from 'react';
 import { fetchApodWithFilters } from '../api/apod';
 
 const BrowsePage = () => {
+  const today = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
+
+  const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
 
   // Filter states
   const [count, setCount] = useState(3);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [singleDate, setSingleDate] = useState('');
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(today);
+  const [singleDate, setSingleDate] = useState(today);
 
   // Handlers
   const handleRandomSearch = () => {
-    fetchApodWithFilters({ count }).then(setResults);
+    setLoading(true);
+    fetchApodWithFilters({ count })
+      .then(setResults)
+      .finally(() => setLoading(false));
   };
 
   const handleDateRangeSearch = () => {
     if (startDate && endDate) {
-      fetchApodWithFilters({ start_date: startDate, end_date: endDate }).then(setResults);
+      setLoading(true);
+      fetchApodWithFilters({ start_date: startDate, end_date: endDate })
+        .then(setResults)
+        .finally(() => setLoading(false));
     }
   };
 
   const handleSingleDateSearch = () => {
     if (singleDate) {
-      fetchApodWithFilters({ date: singleDate }).then(data => setResults([data])); // Returns a single object
+      setLoading(true);
+      fetchApodWithFilters({ date: singleDate })
+        .then(data => setResults([data]))
+        .finally(() => setLoading(false));
     }
   };
 
@@ -39,8 +51,13 @@ const BrowsePage = () => {
             onChange={(e) => setCount(e.target.value)}
             className="border w-full px-2 py-1 rounded mb-2"
           />
-          <button onClick={handleRandomSearch} className="w-full bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-            Fetch {count} Random
+          <button
+            onClick={handleRandomSearch}
+            disabled={loading}
+            className={`w-full px-3 py-1 rounded text-white ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+              }`}
+          >
+            {loading ? 'Loading...' : `Fetch ${count} Random`}
           </button>
         </div>
 
@@ -60,8 +77,13 @@ const BrowsePage = () => {
             onChange={(e) => setEndDate(e.target.value)}
             className="border w-full px-2 py-1 rounded mb-2"
           />
-          <button onClick={handleDateRangeSearch} className="w-full bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-            Search Range
+          <button
+            onClick={handleDateRangeSearch}
+            disabled={loading}
+            className={`w-full px-3 py-1 rounded text-white ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+              }`}
+          >
+            {loading ? 'Loading...' : 'Search Range'}
           </button>
         </div>
 
@@ -73,8 +95,13 @@ const BrowsePage = () => {
             onChange={(e) => setSingleDate(e.target.value)}
             className="border w-full px-2 py-1 rounded mb-2"
           />
-          <button onClick={handleSingleDateSearch} className="w-full bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-            Search Date
+          <button
+            onClick={handleSingleDateSearch}
+            disabled={loading}
+            className={`w-full px-3 py-1 rounded text-white ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+              }`}
+          >
+            {loading ? 'Loading...' : 'Search Date'}
           </button>
         </div>
       </aside>
@@ -83,7 +110,11 @@ const BrowsePage = () => {
       <main className="w-4/5 p-6">
         <h1 className="text-2xl font-semibold mb-6">🛰️ Search Results</h1>
 
-        {results.length === 0 ? (
+        {loading ? (
+          <div className="flex justify-center items-center h-40">
+            <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : results.length === 0 ? (
           <p className="text-gray-600">No results yet. Use filters to search APODs.</p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
