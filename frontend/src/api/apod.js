@@ -7,6 +7,7 @@ export const fetchTodayImage = async () => {
 
 export const fetchApodWithFilters = async (params = {}) => {
   const query = new URLSearchParams(params).toString();
+
   const res = await fetch(`${API_BASE}/search?${query}`);
   return res.json();
 };
