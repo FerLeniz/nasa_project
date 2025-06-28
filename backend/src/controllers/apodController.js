@@ -5,6 +5,7 @@ export const getApodToday = async (req, res, next) => {
     const data = await fetchApod();
     res.json(data);
   } catch (err) {
+      console.log("ERROR IS: ",err)
     next(err);
   }
 };

@@ -62,11 +62,11 @@ const BrowsePage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex flex-col md:flex-row min-h-screen ">
       <Toaster />
 
       {/* Sidebar Filters */}
-      <aside className="w-1/5 bg-white p-4 border-r space-y-6 shadow-sm">
+      <aside className="w-full md:w-1/5 bg-red p-4 border-b md:border-r md:border-b-0 space-y-6 shadow-sm">
         {/* 🎲 Random */}
         <div>
           <h2 className="font-bold mb-2">🎲 Random APODs</h2>
@@ -148,7 +148,7 @@ const BrowsePage = () => {
       </aside>
 
       {/* 🛰️ Results */}
-      <main className="w-4/5 p-6">
+      <main className="w-full md:w-4/5 p-6 bg-sky-100">
         <h1 className="text-2xl font-semibold mb-6">🛰️ Search Results</h1>
         {loading ? (
           <div className="flex justify-center items-center h-40">
