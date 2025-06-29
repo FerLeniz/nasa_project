@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001/api/apod';
+const API_BASE = 'https://nasa-backend-ht26.onrender.com/api/apod';
 
 export const fetchTodayImage = async () => {
   const res = await fetch(`${API_BASE}/today`);

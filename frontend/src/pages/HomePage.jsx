@@ -11,7 +11,7 @@ const HomePage = () => {
 
     async function getMarsPhotos() {
       try {
-        const response = await fetch("http://localhost:3001/api/mars/pictures");
+        const response = await fetch("https://nasa-backend-ht26.onrender.com/api/mars/pictures");
         if (!response.ok) throw new Error(`Status: ${response.status}`);
 
         const json = await response.json();

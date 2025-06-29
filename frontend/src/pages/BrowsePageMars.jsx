@@ -16,7 +16,7 @@ const BrowsePageMars = () => {
         async function getPaginatedMars() {
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:3001/api/mars/searchMars?page=${page}`);
+                const response = await fetch(`https://nasa-backend-ht26.onrender.com/api/mars/searchMars?page=${page}`);
                 const dataMars = await response.json();
                 setResultMars(dataMars.photos || []);
                 setLoading(false);
