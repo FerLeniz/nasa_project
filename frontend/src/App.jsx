@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import BrowsePage from './pages/BrowsePage';
+import BrowsePageMars from './pages/BrowsePageMars'
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/browse" element={<BrowsePage />} />
+          <Route path="/browseApod" element={<BrowsePage />} />
+          <Route path="/browseMars" element={<BrowsePageMars />} />
         </Routes>
         </div>
     </Router>

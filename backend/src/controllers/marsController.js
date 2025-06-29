@@ -9,6 +9,6 @@ const handleMarsRequest = (buildParams) => async (req, res, next) => {
   }
 };
 
-export const getMarsPic = handleMarsRequest(() => ({ camera: "rhaz", sol: 1000 }));
+export const getMarsPic = handleMarsRequest(() => ({ camera: "NAVCAM", sol: 1000 }));
 
 export const searchMars = handleMarsRequest(req => ({ sol: 1000, page: req.query.page }));

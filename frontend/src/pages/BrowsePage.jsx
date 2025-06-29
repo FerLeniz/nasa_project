@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { fetchApodWithFilters } from '../api/apod';
 import toast, { Toaster } from 'react-hot-toast';
+import ScrollToTopButton from '../components/ScrollToTopButton';
 
 const pad = (n) => n.toString().padStart(2, '0');
 const todayStr = `${new Date().getFullYear()}-${pad(new Date().getMonth() + 1)}-${pad(new Date().getDate())}`;
@@ -10,7 +11,6 @@ const MAX_RANGE_DAYS = 50;
 const BrowsePage = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
-
   const [count, setCount] = useState(3);
   const [startDate, setStartDate] = useState(todayStr);
   const [endDate, setEndDate] = useState(todayStr);
@@ -172,6 +172,7 @@ const BrowsePage = () => {
           </div>
         )}
       </main>
+      <ScrollToTopButton position="left" />
     </div>
   );
 };

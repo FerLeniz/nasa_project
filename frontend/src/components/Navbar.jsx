@@ -12,10 +12,16 @@ const Navbar = () => (
           Home
         </Link>
         <Link
-          to="/browse"
+          to="/browseApod"
           className="text-white hover:text-blue-400 hover:underline transition duration-200"
         >
-          Browse
+          Browse APOD
+        </Link>
+        <Link
+          to="/browseMars"
+          className="text-white hover:text-blue-400 hover:underline transition duration-200"
+        >
+          Browse Mars
         </Link>
       </div>
     </div>
