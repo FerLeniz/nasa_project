@@ -36,11 +36,15 @@ const HomePage = () => {
   return (
     <>
       <h1 className='text-center font-bold text-4xl py-3'>Astronomy Picture of the Day(APOD):</h1>
-      <div className="min-h-screen bg-gray-100">
-        <h3 className="text-2xl text-center my-4 font-bold text-black">{apod.title}</h3>
-        <p className="text-xl font-bold text-center text-gray-500 mb-3">📅 {apod.date}</p>
-        <img src={apod.url} alt={apod.title} className="w-full px-6 rounded-lg shadow" />
-        <p className="mt-5 px-5 text-2xl text-gray-700">{apod.explanation}</p>
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center text-center px-4 py-6">
+        <h3 className="text-2xl font-bold text-black mb-2">{apod.title}</h3>
+        <p className="text-xl font-bold text-gray-500 mb-4">📅 {apod.date}</p>
+        <img
+          src={apod.url}
+          alt={apod.title}
+          className="w-full max-h-[80vh] object-cover rounded-lg shadow-lg mb-6"
+        />
+        <p className="text-2xl text-gray-700 max-w-4xl">{apod.explanation}</p>
       </div>
 
       <div className="mt-10 pt-5 bg-yellow-100">
