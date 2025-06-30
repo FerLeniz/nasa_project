@@ -22,7 +22,7 @@ const ScrollToTopButton = ({ position = 'right' }) => {
   return isVisible ? (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-6 ${positionClass} p-3 bg-blue-600 text-white text-3xl rounded-full shadow-lg hover:bg-blue-700 transition-all`}
+      className={`fixed bottom-6 ${positionClass} p-3 bg-blue-600 text-white text-3xl rounded-full shadow-lg hover:bg-blue-700 transition-all cursor-pointer`}
       aria-label="Scroll to top"
     >
       ⬆
